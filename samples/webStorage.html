@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Web Storage</title>
+    <link rel="stylesheet" href="../css/samples.css" />
+    <link href="https://www.w3.org/html/logo/favicon.ico" rel="shortcut icon"/>
+</head>
+<body>
+    <h1>Web Storage</h1>
+    <div>
+        <p>Provides mechanisms by which browsers can store key/value pairs, in a much more intuitive fashion than using cookies.</p>
+        <ul>
+            <li><code>sessionStorage</code> maintains a separate storage area for each given origin that's available for the duration of the page session
+                (as long as the browser is open, including page reloads and restores)</li>
+            <li><code>localStorage</code> does the same thing, but persists even when the browser is closed and reopened.</li>
+        </ul>
+    </div>
+    <form>
+        <fieldset>
+            <legend>Add Employee</legend>
+            <div>
+                <label for="employee-id">Employee ID</label>
+                <input type="text" id="employee-id" name="EmployeeId" maxlength="8" pattern="^\d{8}$" placeholder="8-digit number" required="required" />
+            </div>
+            <div>
+                <label for="first-name">First name</label>
+                <input type="text" id="first-name" name="FirstName" required="required" />
+            </div>
+            <div>
+                <label for="last-name">Last name</label>
+                <input type="text" id="last-name" name="LastName" required="required" />
+            </div>
+            <div>
+                <label for="sex">Genre</label>
+                <label><input type="radio" name="Sex" value="1" /> Female</label>
+                <label><input type="radio" name="Sex" value="2" /> Male</label>
+            </div>
+            <div>
+                <label for="department">Department</label>
+                <select id="department" name="DepartmentId" required="required"></select>
+            </div>
+            <div>
+                <label for="title">Job title</label>
+                <input type="text" id="title" name="Title" required="required" />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" required="required" />
+            </div>
+            <div>
+                <label for="date-hired">Date hired</label>
+                <input type="date" id="date-hired" name="DateHired" placehoder="dd/mm/aaaa" required="required" />
+            </div>
+            <div class="buttons">
+                <button type="submit">Save employee</button>
+            </div>
+        </fieldset>
+    </form>
+    <nav>
+        <ul>
+            <li><a href="appCache.html">AppCache</a></li>
+            <li><a href="serviceWorker.html">Service Worker</a></li>
+            <li><a href="indexedDb.html">Indexed DB</a></li>
+        </ul>
+    </nav>
+    <script src="../js/utils/dom.js"></script>
+    <script type="text/javascript" src="../js/utils/xhr.js"></script>
+    <script type="text/javascript" src="../js/utils/storageHandler.js"></script>
+    <script type="text/javascript">
+        (function () {
+            function getDepartments() {
+                return xhr.get('/data/departments.json');
+            }
+
+            getDepartments().then(function (data) {
+                data = [{ Id: null, Name: 'Select a department' }].concat(data);
+                domUtils.populateSelect(document.getElementById('department'), data, 'Id', 'Name');
+
+                storageHandler(
+                    storageHandler.types.LOCAL,
+                    'employeeEdition',
+                    document.querySelector('form'));
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Service Worker</title>
+    <link rel="stylesheet" href="../css/loading.css" />
+    <link rel="stylesheet" href="../css/samples.css" />
+    <link href="https://www.w3.org/html/logo/favicon.ico" rel="shortcut icon"/>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Resources persistency through Service Worker</h1>
+        </header>
+        <div>
+            <p>Use JavaScript to control your AppCache-implied behaviours with a fine degree of granularity.</p>
+            <p>Content aching is managed through a Service Worker.</p>
+            <p>The Service Worker intercepts server requests and returns cached files.</p>
+        </div>
+        <div class="images">
+            <figure>
+                <img alt="Sample image #1" src="../imgs/01.jpg" />
+                <figcaption>This image is cached</figcaption>
+            </figure>
+        </div>
+    </article>
+    <nav>
+        <ul>
+            <li><a href="appCache.html">AppCache</a></li>
+            <li><a href="webStorage.html">Web Storage</a></li>
+            <li><a href="indexedDb.html">Indexed DB</a></li>
+        </ul>
+    </nav>
+    <script src="../js/utils/serviceWorkerHandler.js"></script>
+    <script type="text/javascript">
+        if (window.serviceWorkerHandler) {
+            window.serviceWorkerHandler();
+        }
+    </script>
+</body>
+</html>

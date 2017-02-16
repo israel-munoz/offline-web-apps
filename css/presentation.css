@@ -1,0 +1,247 @@
+html,
+body,
+article,
+article > * {
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+}
+html {
+    background-color: #00517c;
+    color: #fff;
+    font: 4vh 'segoe ui', calibri, sans-serif;
+    font-weight: 600;
+}
+body {
+    margin: 0;
+}
+body > article {
+    overflow: hidden;
+}
+h1,
+h2,
+ul {
+    margin: 0;
+}
+h1,
+h2 {
+    font-family: cambria, serif;
+}
+h2 {
+    color: #8bc34a;
+    font-size: 250%;
+}
+header {
+    height: 100%;
+    padding-top: 10vh;
+    width: 100%;
+}
+header div {
+    background: url(/imgs/title.svg) no-repeat 50% 50% / 40vh;
+    height: calc(100vh * 3 / 4);
+    margin: 0 auto;
+    position: relative;
+    width: 100vh;
+}
+header div::before,
+header div::after {
+    border: .3vw #8bc34a;
+    content: '';
+    display: block;
+    height: 10vw;
+    position: absolute;
+    width: 10vw;
+}
+header div::before {
+    border-style: solid none none solid;
+    left: 0;
+    top: 0;
+}
+header div::after {
+    border-style: none solid solid none;
+    bottom: 0;
+    right: 0;
+}
+header h1 {
+    color: #fff;
+    font-size: 180%;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 6vh;
+    width: 100%;
+}
+header h2 {
+    bottom: 5vh;
+    font-size: 100%;
+    font-weight: 400;
+    margin: 0 0;
+    position: absolute;
+    right: 5vh;
+    text-align: right;
+    width: 100%;
+}
+header p {
+    bottom: 5vh;
+    left: 5vh;
+    margin: 0;
+    position: absolute;
+}
+header p a {
+    color: #8bc34a;
+    display: inline-block;
+    font-weight: 400;
+    text-decoration: none;
+    vertical-align: middle;
+}
+header p::before {
+    content: url(/imgs/github.svg);
+    display: inline-block;
+    height: 1em;
+    margin-right: .2em;
+    vertical-align: middle;
+    width: 1em;
+}
+section[role=presentation] {
+    padding: 5vh 5vw;
+}
+section[role=heading] h2 {
+    left: 0;
+    line-height: 14vh;
+    position: relative;
+    text-align: center;
+    top: 43vh;
+}
+blockquote {
+    font-family: 'times new roman';
+    font-style: italic;
+    font-weight: 400;
+    margin: 0;
+    padding: 1em 1em 1em 2em;
+    position: relative;
+}
+blockquote::before {
+    content: '“';
+    font-size: 300%;
+    float: left;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+blockquote footer {
+    font-family: 'segoe ui', calibri, sans-serif;
+    font-size: 80%;
+    font-style: normal;
+    margin-top: .5em;
+}
+section.js-apis h2 {
+    cursor: none;
+    text-shadow: 0 0 5px #00517c,
+                 0 0 10px #00517c,
+                 0 0 15px #00517c;
+    z-index: 100;
+}
+section.js-apis ul {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 120%;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+}
+section.js-apis ul li {
+    line-height: calc(100vh / 4);
+    list-style-type: none;
+    text-shadow: 
+        0 0 5px,
+        0 0 10px,
+        0 0 15px,
+        0 0 20px,
+        0 0 25px,
+        0 0 30px;
+    text-align: center;
+    transition: text-shadow 1s;
+}
+section.js-apis ul li:nth-child(1),
+section.js-apis ul li:nth-child(2),
+section.js-apis ul li:nth-child(3),
+section.js-apis ul li:nth-child(4),
+section.js-apis ul li:nth-child(8),
+section.js-apis ul li:nth-child(9),
+section.js-apis ul li:nth-child(10),
+section.js-apis ul li:nth-child(11) {
+    flex: 0 calc(100% / 4);
+}
+section.js-apis ul li:nth-child(5),
+section.js-apis ul li:nth-child(6),
+section.js-apis ul li:nth-child(7),
+section.js-apis ul li:nth-child(12),
+section.js-apis ul li:nth-child(13),
+section.js-apis ul li:nth-child(14) {
+    flex: 0 calc(100% / 3);
+}
+section.js-apis h2:hover ~ ul li.main {
+    text-shadow: 0 0 5px, 0 0 10px;
+}
+figure.client-server {
+    cursor: none;
+    height: 16.488vw;
+    margin: 0 auto;
+    position: relative;
+    width: 72vw;
+}
+figure.client-server::before,
+figure.client-server::after {
+    background-color: #c00;
+    border-radius: .25vw;
+    content: '';
+    display: block;
+    height: 80%;
+    position: absolute;
+    top: 5%;
+    transform: rotate(25deg) scaleY(0);
+    transition: transform .2s;
+    width: .5vw;
+}
+figure.client-server:hover::before,
+figure.client-server:hover::after {
+    transform: rotate(25deg) scaleY(1);
+}
+figure.client-server::before {
+    left: 27%;
+}
+figure.client-server::after {
+    right: 25%;
+    transition-delay: .2s;
+}
+section.definition {
+    padding: 5vw 10vw;
+}
+section.definition p {
+    margin-top: 2vw;
+}
+section.definition ul {
+    align-items: flex-start;
+    display: flex;
+    font-size: 90%;
+    height: 3em;
+}
+section.definition ul li {
+    flex: 0 100%;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+section.definition ul li:nth-child(2) {
+    align-self: flex-end;
+}
+section.definition ul li a {
+    background: linear-gradient(0deg, #fff 0, #fff 100%) no-repeat 50% 100% / 0 .1em;
+    color: #fff;
+    text-decoration: none;
+    transition: background-size .2s linear;
+}
+section.definition ul li a:hover {
+    background-size: 100% .1em;
+}

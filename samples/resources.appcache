@@ -1,0 +1,10 @@
+﻿CACHE MANIFEST
+../samples/appCache.html
+../css/samples.css
+../css/loading.css
+../js/utils/appCacheHandler.js
+../imgs/01.jpg
+https://www.w3.org/html/logo/favicon.ico
+
+NETWORK:
+*

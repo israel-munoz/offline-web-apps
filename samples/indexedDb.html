@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Indexed DB</title>
+    <link rel="stylesheet" href="../css/loading.css" />
+    <link rel="stylesheet" href="../css/samples.css" />
+    <link href="https://www.w3.org/html/logo/favicon.ico" rel="shortcut icon"/>
+    <script src="../js/utils/indexedDbHandler.js"></script>
+</head>
+<body>
+    <h1>TODO list</h1>
+    <section>
+        <table id="todo-list" class="list">
+            <colgroup>
+                <col class="width-60" />
+                <col class="width-40" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="left">Task</th>
+                    <th class="center">Due date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <form id="add-task-form" autocomplete="off">
+            <fieldset>
+                <legend>Add element</legend>
+                <div>
+                    <label for="task">Task</label>
+                    <input type="text" id="task" name="Task" required="required" />
+                </div>
+                <div>
+                    <label for="due-date">Due date</label>
+                    <input type="date" id="due-date" name="DueDate" required="required" />
+                </div>
+                <div class="buttons">
+                    <button type="submit" name="save">Add task</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+    <nav>
+        <ul>
+            <li><a href="appCache.html">AppCache</a></li>
+            <li><a href="serviceWorker.html">Service Worker</a></li>
+            <li><a href="webStorage.html">Web Storage</a></li>
+        </ul>
+    </nav>
+    <script type="text/javascript" src="../js/utils/xhr.js"></script>
+    <script type="text/javascript" src="../js/utils/indexedDbHandler.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var idb = window.indexedDbHandler;
+            idb.init({
+                dbVersion: 1,
+                dbName: 'IdbTest',
+                onupgradeneeded: function (event) {
+                    var db = event.target.result;
+                    db.createObjectStore('tasks', { keyPath: 'Id', autoIncrement: true });
+                }
+            });
+
+            function getFormData(form) {
+                var data = {},
+                    controls = form.querySelectorAll('*[name]'),
+                    i, j = controls.length, control;
+                for (i = 0; i < j; i += 1) {
+                    control = controls[i];
+                    data[control.name] = control.valueAsDate || control.valueAsNumber || control.value;
+                }
+                return data;
+            }
+
+            function dateString(date) {
+                var mm = date.getMonth() + 1;
+                var dd = date.getDate();
+
+                return [date.getFullYear(),
+                        (mm > 9 ? '' : '0') + mm,
+                        (dd > 9 ? '' : '0') + dd
+                ].join('/');
+            }
+
+            function deleteItem() {
+                var row = this.parentElement.parentElement;
+                idb.delete('tasks', Number(row.dataset.id)).then(function () {
+                    row.parentElement.removeChild(row);
+                });
+            }
+
+            function addDeleteButton(cell) {
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.classList.add('delete');
+                button.addEventListener('click', deleteItem);
+                button.textContent = 'Delete';
+                cell.insertBefore(button, cell.childNodes[0]);
+            }
+
+            function addRow(item, table) {
+                var body = table.querySelector('tbody'),
+                    row = document.createElement('tr'),
+                    taskCell = document.createElement('td'),
+                    dateCell = document.createElement('td');
+
+                row.dataset.id = item.Id;
+                taskCell.textContent = item.Task;
+                dateCell.textContent = dateString(item.DueDate);
+                addDeleteButton(taskCell);
+                taskCell.classList.add('left');
+                dateCell.classList.add('center');
+
+                row.appendChild(taskCell);
+                row.appendChild(dateCell);
+                body.appendChild(row);
+            }
+
+            function afterSave(itemId) {
+                var form = document.querySelector('#add-task-form'),
+                    item = getFormData(form);
+                item.Id = itemId;
+                addRow(item, document.querySelector('#todo-list'));
+                form.reset();
+            };
+
+            function addTask(event) {
+                event.preventDefault();
+                var data = getFormData(this);
+                idb.add('tasks', data).then(afterSave);
+            }
+
+            idb.getAll('tasks').then(function (data) {
+                var table = document.querySelector('#todo-list');
+                data.forEach(function (item) {
+                    addRow(item, table);
+                });
+            });
+            document.querySelector('#add-task-form').addEventListener('submit', addTask);
+        }());
+    </script>
+</body>
+</html>

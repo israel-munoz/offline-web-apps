@@ -1,0 +1,71 @@
+﻿@keyframes full-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    transform: rotate(225deg);
+    height: 30px;
+    width: 30px;
+}
+
+.loading::before,
+.loading::after {
+    border-radius: 50%;
+}
+
+.loading::before,
+.loading::after {
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: none;
+    animation-name: full-rotate;
+    animation-play-state: running;
+    animation-timing-function: linear;
+    content: '';
+    display: block;
+    position: absolute;
+    border: solid 4px rgba(255, 255, 255, .5);
+    border-top-color: transparent !important;
+    border-left-color: transparent !important;
+    height: calc(100% - 8px);
+    width: calc(100% - 8px);
+}
+
+.loading::before {
+    animation-duration: 2s;
+    animation-direction: normal;
+}
+
+.loading::after {
+    animation-duration: 1s;
+    animation-direction: reverse;
+}
+
+.loading.loading-inline {
+    margin: 0;
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+}
+
+.loading.loading-inline::before,
+.loading.loading-inline::after {
+    border-width: 2px;
+    height: calc(100% - 4px);
+    width: calc(100% - 4px);
+}
+
+.loading.loading-dark::before,
+.loading.loading-dark::after {
+    border-bottom-color: rgba(0, 0, 0, .3);
+    border-right-color: rgba(0, 0, 0, .3);
+}

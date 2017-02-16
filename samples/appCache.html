@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html manifest="resources.appcache">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AppCache</title>
+    <link rel="stylesheet" href="../css/loading.css" />
+    <link rel="stylesheet" href="../css/samples.css" />
+    <link href="https://www.w3.org/html/logo/favicon.ico" rel="shortcut icon"/>
+</head>
+<body>
+    <div class="floating-message cache-message visible">
+        <span class="loading loading-inline loading-dark"></span>
+        <span class="message-text">Updating resources...</span>
+    </div>
+    <article>
+        <header>
+            <h1>Resources persistency through Application Cache</h1>
+        </header>
+        <div>
+            <p>Application caching mechanism that lets web-based applications run offline, used to specify resources that the browser should cache and make available to offline users.</p>
+            <p>The resources specified in the <code>manifest</code> are cached.</p>
+            <p>Cached files won't be requested from the server until a new manifest is downloaded.</p>
+        </div>
+        <div class="images">
+            <figure>
+                <img alt="Sample image #1" src="../imgs/01.jpg" />
+                <figcaption>This image is cached</figcaption>
+            </figure>
+            <figure>
+                <img alt="Sample image #2" src="../imgs/02.jpg" />
+                <figcaption>This image is not cached</figcaption>
+            </figure>
+        </div>
+    </article>
+    <nav>
+        <ul>
+            <li><a href="serviceWorker.html">Service Worker</a></li>
+            <li><a href="webStorage.html">Web Storage</a></li>
+            <li><a href="indexedDb.html">Indexed DB</a></li>
+        </ul>
+    </nav>
+    <script type="text/javascript" src="../js/utils/appCacheHandler.js"></script>
+    <script type="text/javascript">
+        var message = document.querySelector('.cache-message'),
+            text = message.querySelector('.message-text');
+        appCacheHandler({
+            cached: function () {
+                message.innerHTML = 'Cache ready.';
+            },
+            checking: function () {
+                text.textContent = 'Checking for new cache version...';
+            },
+            downloading: function () {
+                text.textContent = 'Downloading resources...';
+            },
+            noupdate: function () {
+                message.innerHTML = 'No update needed.';
+            },
+            obsolete: function () {
+                text.textContent = 'Cache is obsolete.';
+            },
+            updateready: function () {
+                message.innerHTML = 'Ready to update. <a href="javascript://" onclick="window.location.reload();">Refresh</a> page to get latest changes.'
+            },
+            error: function () {
+                message.innerHTML = 'Error loading the manifest.';
+            }
+        });
+    </script>
+</body>
+</html>
