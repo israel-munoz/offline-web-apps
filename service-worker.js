@@ -1,12 +1,12 @@
 ﻿(function (self) {
     var cacheVersion = 'v1',
         cachedFiles = [
-            '/samples/ServiceWorker.html',
-            '/css/samples.css',
-            '/css/loading.css',
-            '/js/utils/serviceWorkerHandler.js',
-            '/imgs/01.jpg',
-            '/imgs/02.jpg'
+            '../samples/ServiceWorker.html',
+            '../css/samples.css',
+            '../css/loading.css',
+            '../js/utils/serviceWorkerHandler.js',
+            '../imgs/01.jpg',
+            '../imgs/02.jpg'
         ];
 
     self.addEventListener('install', function (event) {

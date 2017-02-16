@@ -3,7 +3,7 @@
         if (!navigator.serviceWorker) {
             throw Error('Service Worker not supported.');
         }
-        navigator.serviceWorker.register('/service-worker.js', { scope: './' })
+        navigator.serviceWorker.register('../service-worker.js', { scope: './' })
             .then(function (registration) {
                 console.log(registration);
             })
