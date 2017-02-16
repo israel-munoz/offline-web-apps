@@ -37,7 +37,7 @@ header {
     width: 100%;
 }
 header div {
-    background: url(/imgs/title.svg) no-repeat 50% 50% / 40vh;
+    background: url(../imgs/title.svg) no-repeat 50% 50% / 40vh;
     height: calc(100vh * 3 / 4);
     margin: 0 auto;
     position: relative;
@@ -95,7 +95,7 @@ header p a {
     vertical-align: middle;
 }
 header p::before {
-    content: url(/imgs/github.svg);
+    content: url(../imgs/github.svg);
     display: inline-block;
     height: 1em;
     margin-right: .2em;
