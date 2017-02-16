@@ -1,7 +1,7 @@
 ﻿(function (self) {
     var cacheVersion = 'v1',
         cachedFiles = [
-            'samples/ServiceWorker.html',
+            'samples/serviceWorker.html',
             'css/samples.css',
             'css/loading.css',
             'js/utils/serviceWorkerHandler.js',
