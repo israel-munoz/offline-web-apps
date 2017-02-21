@@ -244,3 +244,21 @@ section.definition ul li a {
 section.definition ul li a:hover {
     background-size: 100% .1em;
 }
+section.references ul {
+    font-size: 80%;
+}
+section.references ul li {
+    margin-bottom: .8em;
+}
+section.references ul li a {
+    background: linear-gradient(0deg, #fff 0, #fff 100%) no-repeat 0 100% / 0 .1em;
+    color: inherit;
+    display: block;
+    margin-left: 1em;
+    text-decoration: none;
+    transition: background-size .2s linear;
+    width: fit-content;
+}
+section.references ul li a:hover {
+    background-size: 100% .1em;
+}
