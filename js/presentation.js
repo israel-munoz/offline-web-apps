@@ -97,11 +97,19 @@
         }
     });
 
+    function clientServerHover (evt) {
+        evt.target.parentElement.classList.add('off');
+        console.log('eee');
+        evt.target.removeEventListener('mouseover', clientServerHover);
+    }
+
     setSlides(document.querySelector('article'));
 
     window.addEventListener('click', windowClick);
 
     window.addEventListener('contextmenu', windowClick);
+
+    document.querySelector('#problem .client-server img').addEventListener('mouseover', clientServerHover);
     
     if (document.body.style.flex === undefined) {
         document.body.classList.add('no-flex');

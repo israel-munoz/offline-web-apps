@@ -204,8 +204,8 @@ figure.client-server::after {
     transition: transform .2s;
     width: .5vw;
 }
-figure.client-server:hover::before,
-figure.client-server:hover::after {
+figure.client-server.off::before,
+figure.client-server.off::after {
     transform: rotate(25deg) scaleY(1);
 }
 figure.client-server::before {
@@ -221,20 +221,19 @@ section.definition {
 section.definition p {
     margin-top: 2vw;
 }
-section.definition ul {
-    align-items: flex-start;
+section.definition .samples {
     display: flex;
-    font-size: 90%;
-    height: 3em;
+    align-items: flex-start;
+    justify-content: space-around;
 }
-section.definition ul li {
-    flex: 0 100%;
+section.definition .samples div {
+    flex: 0 40%;
+}
+section.definition .samples ul {
     list-style-type: none;
-    padding: 0;
-    text-align: center;
 }
-section.definition ul li:nth-child(2) {
-    align-self: flex-end;
+section.definition .samples ul li {
+    line-height: 2em;
 }
 section.definition ul li a {
     background: linear-gradient(0deg, #fff 0, #fff 100%) no-repeat 50% 100% / 0 .1em;
